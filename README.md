@@ -1,2 +1,2 @@
 # desafio-picpay-backend
-Realizando um desafio técnico desenvolvidor e sugerido pela empresa Pic Pay
+Realizando um desafio técnico desenvolvido e sugerido pela empresa PicPay
