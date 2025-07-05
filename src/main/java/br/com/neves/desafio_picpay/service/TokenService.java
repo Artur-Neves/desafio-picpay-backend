@@ -47,6 +47,14 @@ public class TokenService {
                 .sign(algorithm);
     }
 
+    public String verify(String token){
+        Algorithm algorithm = Algorithm.HMAC256(SECRET_ALGORITHM_TOKEN);
+         return JWT.require(algorithm)
+                 .build()
+                 .verify(token)
+                 .getSubject();
+    }
+
     public SimpleTokenResponseDto createTokens(User user){
         return new SimpleTokenResponseDto(createToken(user), createRefreshToken(user));
     }
