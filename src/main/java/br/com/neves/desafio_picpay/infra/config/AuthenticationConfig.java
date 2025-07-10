@@ -28,6 +28,7 @@ public class AuthenticationConfig {
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers(HttpMethod.POST, "/user/login").permitAll();
                     req.requestMatchers("/shopkeeper**").hasAuthority(Role.SHOPKEEPER.getRole());
+                    req.requestMatchers( "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(filterAuthentication, UsernamePasswordAuthenticationFilter.class)
