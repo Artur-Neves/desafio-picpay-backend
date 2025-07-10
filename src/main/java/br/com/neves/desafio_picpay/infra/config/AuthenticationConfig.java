@@ -26,9 +26,8 @@ public class AuthenticationConfig {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
-                    req.requestMatchers(HttpMethod.POST, "/user/login").permitAll();
-                    req.requestMatchers("/shopkeeper**").hasAuthority(Role.SHOPKEEPER.getRole());
-                    req.requestMatchers( "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
+                    req.requestMatchers(HttpMethod.POST, "/user/login", "/shopkeeper", "/simple-user").permitAll();
+                    req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(filterAuthentication, UsernamePasswordAuthenticationFilter.class)

@@ -19,6 +19,9 @@ public class People {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = true, nullable = false)
     protected User user;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "people")
+    @JoinColumn(unique = true, nullable = false)
+    protected Account account;
 
     public String getCpf() {
         return cpf;
@@ -36,6 +39,7 @@ public class People {
         this.cpf = peopleDto.cpf();
         this.user = new User(peopleDto.userDto());
         this.user.setRole(role);
+        this.account = new Account(this);
     }
 
     public People(UpdatePeopleDto peopleDto){
